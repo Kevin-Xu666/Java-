@@ -18,19 +18,19 @@ https://www.bilibili.com/video/BV1L4411y7mn/
 
    系统的耦合性越高，容错性就越低。以电商应用为例，用户创建订单后，如果耦合调用库存系统、物流系统、支付系统，任何一个子系统出了故障或者因为升级等原因暂时不可用，都会造成下单操作异常，影响用户使用体验。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\解耦1.png" style="zoom:80%;" />
+   <img src="img\解耦1.png" style="zoom:80%;" />
 
    使用消息队列解耦合，系统的耦合性就会提高了。比如物流系统发生故障，需要几分钟才能来修复，在这段时间内，物流系统要处理的数据被缓存到消息队列中，用户的下单操作正常完成。当物流系统回复后，补充处理存在消息队列中的订单消息即可，终端系统感知不到物流系统发生过几分钟故障。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\解耦2.png" style="zoom:80%;" />
+   <img src="img\解耦2.png" style="zoom:80%;" />
 
    * 流量削峰
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\mq-5.png" style="zoom:80%;" />
+   <img src="img\mq-5.png" style="zoom:80%;" />
 
    应用系统如果遇到系统请求流量的瞬间猛增，有可能会将系统压垮。有了消息队列可以将大量请求缓存起来，分散到很长一段时间处理，这样可以大大提到系统的稳定性和用户体验。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\mq-6.png" style="zoom:80%;" />
+   <img src="img\mq-6.png" style="zoom:80%;" />
 
    一般情况，为了保证系统的稳定性，如果系统负载超过阈值，就会阻止用户请求，这会影响用户体验，而如果使用消息队列将请求缓存起来，等待系统处理完毕后通知用户下单完毕，这样总不能下单体验要好。
 
@@ -40,11 +40,11 @@ https://www.bilibili.com/video/BV1L4411y7mn/
 
    * 数据分发
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\mq-1.png" style="zoom:80%;" />
+   <img src="img\mq-1.png" style="zoom:80%;" />
 
    通过消息队列可以让数据在多个系统更加之间进行流通。数据的产生方不需要关心谁来使用数据，只需要将数据发送到消息队列，数据使用方直接在消息队列中直接获取数据即可
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251004184012867.png" alt="image-20251004184012867" style="zoom:80%;" />
+   <img src="img\image-20251004184012867.png" alt="image-20251004184012867" style="zoom:80%;" />
 
 2. MQ的优点和缺点
 
@@ -74,7 +74,7 @@ https://www.bilibili.com/video/BV1L4411y7mn/
 
    常见的MQ产品包括Kafka、ActiveMQ、RabbitMQ、RocketMQ。 
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\MQ比较.png" style="zoom:40%;" />
+   <img src="img\MQ比较.png" style="zoom:40%;" />
 
 ### RocketMQ角色介绍
 
@@ -136,7 +136,7 @@ Broker是实际存放消息的地方，Name Server相当于一个注册中心，
 
    消息高可用采用2m-2s（同步双写）方式
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\RocketMQ集群.png" style="zoom:70%;" />
+   <img src="img\RocketMQ集群.png" style="zoom:70%;" />
 
 2. 集群工作流程
 
@@ -330,7 +330,7 @@ Broker是实际存放消息的地方，Name Server相当于一个注册中心，
    - 全局有序：所有消息严格按照发送顺序被消费，只能让整个topic仅有一个message queue，性能极低；
    - 局部有序：相同业务标识的消息保持顺序，不同业务标识的消息不保证顺序。比如以orderId确定消息投放至哪个message queue，那么相同orderId的消息能保证有序性。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251005153018598.png" alt="image-20251005153018598" style="zoom:33%;" />
+   <img src="img\image-20251005153018598.png" alt="image-20251005153018598" style="zoom:33%;" />
 
 2. 顺序消息实现原理
 
@@ -653,7 +653,7 @@ Broker是实际存放消息的地方，Name Server相当于一个注册中心，
 
 1. 流程分析
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251006110114365.png" alt="image-20251006110114365" style="zoom:70%;" />
+   <img src="img\image-20251006110114365.png" alt="image-20251006110114365" style="zoom:70%;" />
 
 2. 事务消息状态
 
@@ -746,7 +746,7 @@ Broker是实际存放消息的地方，Name Server相当于一个注册中心，
 
    分布式队列因为有高可靠性的要求，所以数据要进行持久化存储。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\消息存储方式.png" style="zoom:70%;" />
+   <img src="img\消息存储方式.png" style="zoom:70%;" />
 
    - 消息生成者发送消息
 
@@ -795,7 +795,7 @@ Broker是实际存放消息的地方，Name Server相当于一个注册中心，
 
    - 最后是从网络驱动的内核态内存复制到网卡中进行传输。
 
-   ![](D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\文件操作和网络操作.png)通过使用**零拷贝**的方式，可以省去**内核态——>用户态**这一步的内存复制，提高速度。这种机制在Java中是通过MappedByteBuffer实现的。
+   ![](img\文件操作和网络操作.png)通过使用**零拷贝**的方式，可以省去**内核态——>用户态**这一步的内存复制，提高速度。这种机制在Java中是通过MappedByteBuffer实现的。
 
    RocketMQ充分利用了上述特性，提高消息存盘和网络发送的速度。
 
@@ -805,7 +805,7 @@ Broker是实际存放消息的地方，Name Server相当于一个注册中心，
 
 RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真正的物理存储文件是CommitLog，ConsumeQueue是消息的逻辑队列，类似数据库的索引文件，存储的是指向物理存储的地址。每个Topic下的每个Message Queue都有一个对应的ConsumeQueue文件。
 
-<img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\消息存储结构.png" style="zoom:70%;" />
+<img src="img\消息存储结构.png" style="zoom:70%;" />
 
 * CommitLog：存储消息的元数据；
 * ConsumerQueue：存储消息在CommitLog的索引，即使丢失也能通过CommitLog进行重建；
@@ -817,7 +817,7 @@ RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真
 
    RocketMQ的消息是存储到磁盘上的，这样既能保证断电后恢复， 又可以让存储的消息量超出内存的限制。RocketMQ为了提高性能，会尽可能地保证磁盘的顺序写。消息在通过Producer写入RocketMQ的时候，有两种写磁盘方式，分布式同步刷盘和异步刷盘。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251012203656698.png" alt="image-20251012203656698" style="zoom:50%;" />
+   <img src="img\image-20251012203656698.png" alt="image-20251012203656698" style="zoom:50%;" />
 
 2. 同步刷盘
 
@@ -873,7 +873,7 @@ RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真
 
    Producer端，每个实例在发消息的时候，默认会轮询所有的message queue发送，以达到让消息平均落在不同的queue上。而由于queue可以散落在不同的broker，所以消息就发送到不同的broker下，如下图：
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251012204921565.png" alt="image-20251012204921565" style="zoom:70%;" />
+   <img src="img\image-20251012204921565.png" alt="image-20251012204921565" style="zoom:70%;" />
 
    图中箭头线条上的标号代表顺序，发布方会把第一条消息发送至Queue 0，然后第二条消息发送至Queue 1，以此类推，第7条消息又会发送至Queue 0。
 
@@ -887,11 +887,11 @@ RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真
 
    默认的分配算法是AllocateMessageQueueAveragely，如下图：
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251012205105639.png" alt="image-20251012205105639" style="zoom:67%;" />
+   <img src="img\image-20251012205105639.png" alt="image-20251012205105639" style="zoom:67%;" />
 
    还有另外一种平均的算法是AllocateMessageQueueAveragelyByCircle，也是平均分摊每一条queue，只是以环状轮流分queue的形式，如下图：
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251012205126627.png" alt="image-20251012205126627" style="zoom:67%;" />
+   <img src="img\image-20251012205126627.png" alt="image-20251012205126627" style="zoom:67%;" />
 
    需要注意的是，集群模式下，都是一个queue只分给一个consumer实例，一个consumer实例可以允许同时分到不同的queue。
 
@@ -905,7 +905,7 @@ RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真
 
    在实现上，其中一个不同就是在consumer分配queue的时候，所有consumer都分到所有的queue。
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\image-20251012205358836.png" alt="image-20251012205358836" style="zoom:67%;" />
+   <img src="img\image-20251012205358836.png" alt="image-20251012205358836" style="zoom:67%;" />
 
 ### 消息重试
 
@@ -1067,4 +1067,5 @@ RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真
 #### 处理方式
 
 因为Message ID有可能出现冲突（重复）的情况，所以真正安全的幂等处理，不建议以Message ID作为处理依据。 最好的方式是以业务唯一标识作为幂等处理的关键依据。
+
 
