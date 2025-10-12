@@ -10,7 +10,7 @@ https://www.bilibili.com/video/BV1L4411y7mn/
 
    消息队列是一种“先进先出”的数据结构
 
-   <img src="D:\Desktop\Java学习个人笔记整理\13 RocketMQ.assets\queue1.png" style="zoom:50%;" />
+   <img src="img\queue1.png" style="zoom:50%;" />
 
    其应用场景主要包含以下3个方面
 
@@ -1067,3 +1067,4 @@ RocketMQ消息的存储是由ConsumeQueue和CommitLog配合完成的，消息真
 #### 处理方式
 
 因为Message ID有可能出现冲突（重复）的情况，所以真正安全的幂等处理，不建议以Message ID作为处理依据。 最好的方式是以业务唯一标识作为幂等处理的关键依据。
+
